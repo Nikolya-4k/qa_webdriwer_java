@@ -2,10 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="smoke Test Suite">
-
     <test name="First Test">
         <classes>
-            <!--            <class name="ua.ithillel.testng.FirstTest"/>-->
+            <class name="ua.ithillel.ui.BaseUITest"/>
         </classes>
     </test>
 </suite>

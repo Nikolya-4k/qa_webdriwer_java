@@ -10,7 +10,7 @@ public class WebDriverFactory {
 
     private static WebDriver driver;
 
-    public static WebDriver getDriver(org.openqa.selenium.remote.Browser chrome) {
+    public static WebDriver getDriver() {
         driver = getDriver(Browser.valueOf(BROWSER.toUpperCase()));
         return driver;
     }
@@ -31,6 +31,7 @@ public class WebDriverFactory {
         if (driver == null) {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
+            driver.manage();
         }
         return driver;
     }

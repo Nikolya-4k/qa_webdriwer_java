@@ -1,7 +1,7 @@
 package ua.ithillel.ui;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.Browser;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import ua.ithillel.ui.browser.WebDriverFactory;
@@ -10,7 +10,6 @@ import org.openqa.selenium.By;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import static org.openqa.selenium.support.ui.ExpectedConditions.titleIs;
 
 public class BaseUITest {
 
@@ -19,9 +18,8 @@ public class BaseUITest {
 
     @BeforeTest
     public void start() {
-        System.setProperty("webdriver.chrome.driver", "C:/dev/chromedriver.exe");
 
-        driver = WebDriverFactory.getDriver(Browser.CHROME);
+        driver = WebDriverFactory.getDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
     }
@@ -29,10 +27,12 @@ public class BaseUITest {
     @Test
     public void test() {
         driver.navigate().to("https://www.google.com");
-        driver.findElement(By.name("q")).sendKeys("webdriver");
-        driver.findElements(By.name("btnK")).get(1).click();
+        WebElement element = driver.findElement(By.name("q"));
+//        driver.findElements(By.name("btnK")).get(1).click();
+        element.sendKeys("webdriver");
+        element.submit();
 
-        Assert.assertEquals(driver.getTitle(), "webdriver - Пошук Google");
+        Assert.assertTrue(driver.getTitle().contains("webdriver"));
     }
 
     @AfterTest
