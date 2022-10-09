@@ -16,7 +16,7 @@ import java.time.Duration;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
-public class SignUp_and_Login {
+public class SignUpAndLoginTest {
     public String getString() {
         return (RandomStringUtils.randomAlphabetic(10));
     }
@@ -26,7 +26,7 @@ public class SignUp_and_Login {
 
     @BeforeTest
     public void BeforeTest() {
-        driver = WebDriverFactory.getDriver();
+        driver = new WebDriverFactory().getDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
@@ -44,7 +44,7 @@ public class SignUp_and_Login {
         driver.findElement(By.id("register-last-modal")).sendKeys(getString());
         driver.findElement(By.id("register-email-modal")).sendKeys(getString()+ "@boxomail.live");
         driver.findElement(By.id("register-password-modal")).sendKeys(password);
-        driver.findElements(By.className("btn")).get(2).click();
+        driver.findElement(By.xpath("//*[@id=\"register-modal\"]/div/div/div[2]/form/p/button")).click();
 
 
         wait.until(ExpectedConditions.elementToBeClickable(By.id("logout")));

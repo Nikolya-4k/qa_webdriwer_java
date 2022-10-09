@@ -19,10 +19,17 @@ public class SignUp {
         return (RandomStringUtils.randomAlphabetic(10));
     }
 
+//    User user = User.builder()
+//            .setUserName("Nikolaas")
+//            .setFirstName("Sergey")
+//            .setLastName("Churaban")
+//            .setEmail("Yasyidad11@boxomail.live")
+//            .build();
+
     @BeforeTest
     public void start() {
 
-        driver = WebDriverFactory.getDriver();
+        driver = new WebDriverFactory().getDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
     }
